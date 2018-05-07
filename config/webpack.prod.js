@@ -14,14 +14,6 @@ module.exports = merge(commonConfig, {
   },
 
   plugins: [
-    new UglifyJsPlugin({
-      compressor: {
-        warnings: false,
-        screw_ie8: true
-      },
-      output: {
-        comments: false
-      }
-    })
+    new UglifyJsPlugin()
   ]
 });
