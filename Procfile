@@ -1,1 +1,1 @@
-web: node index.js
+web: webpack -p --progress --profile --colors && node server
