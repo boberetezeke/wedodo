@@ -7,29 +7,21 @@ import * as actions from '../../../store/loginState/actions'
 
 class Login extends Component {
 
-  constructor(props) {
-    super(props);
-    console.log("Login:constructor")
-    console.log(props)
-    this.state = {loggedIn: props.loggedIn}
-  }
-
   login(evt) {
     evt.preventDefault();
     console.log("clicked");
-    //this.setState({loggedIn: true})
     this.props.loginSuccess()
   }
 
   logout() {
-    //this.setState({loggedIn: false})
     this.props.logoutSuccess()
   }
 
   render () {
+    console.log("Login#render")
     return (
         <>
-          { (this.state.loggedIn) ? (
+          { (this.props.loggedIn) ? (
               <>
                 <div>You are logged in</div>
                 <a href="#" onClick={() => this.logout()}>Logout</a>
@@ -55,16 +47,7 @@ class Login extends Component {
   };
 }
 
-Login.propTypes = {
-  loggedIn: PropTypes.bool
-}
-
-const mapStateToProps = (state, ownProps) => {
-  console.log("in mapStateToProps");
-  console.log(state);
-  console.log(state.loginStateReducer.loggedIn);
-  console.log("in mapStateToProps: ownProps");
-  console.log(ownProps);
+const mapStateToProps = (state) => {
   return {
     loggedIn: state.loginStateReducer.loggedIn
   }
@@ -79,4 +62,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
-//export default connect(mapStateToProps)(Login);
