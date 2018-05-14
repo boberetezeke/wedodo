@@ -23,17 +23,30 @@ import HelloWorld from './components/HelloWorld/HelloWorld';
 import Login from './components/Home/Login';
 import { rootReducer } from "../store/rootReducer";
 
-import { PrivateRoute } from './authentication/components/PrivateRoute.jsx'
-import { LoginPage } from './authentication/components/LoginPage.js'
-import { RegisterPage } from './authentication/components/RegisterPage.jsx'
+import { PrivateRoute } from './authentication/components/PrivateRoute'
+import { LoginPage } from './authentication/components/LoginPage'
+import { RegisterPage } from './authentication/components/RegisterPage'
 
 import { configureFakeBackend } from './authentication/actions/fakeBackEnd'
 
 import './styles/styles.scss';
 
+
+const initialState = {
+  auth: {
+    authentication: {
+      loggingIn: false,
+      loggedIn: localStorage.getItem('user')
+    },
+    registration: {
+      registering: false
+    }
+  }
+}
+
 const store = createStore(
   rootReducer,
-  { auth: {authentication: {loggingIn: false}, registration: {registering: false} } },
+  initialState,
   applyMiddleware(
     thunkMiddleware
   )

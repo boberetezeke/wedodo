@@ -3,26 +3,31 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Navbar, NavDropdown, MenuItem } from 'react-bootstrap';
 
-const Header = () => (
-
-  <header>
-    <Navbar>
-      <Navbar.Header>
-        <Navbar.Brand>
-          <Link to="/">Wedodo</Link>
-        </Navbar.Brand>
-      </Navbar.Header>
-      <Nav pullRight>
-        <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-          <Link to="/login">Logout</Link>
-          <MenuItem eventKey={3.1}>Logout</MenuItem>
+const Header = ({ loggedIn, onSelect }) => {
+  const menu = (loggedIn) => {
+    return loggedIn ?
+      (<Nav pullRight>
+        <NavDropdown eventKey={3} title="User" id="basic-nav-dropdown">
+          <MenuItem eventKey={3.1} onSelect={onSelect}>Logout</MenuItem>
         </NavDropdown>
-      </Nav>
-    </Navbar>
+      </Nav>)
+      : null
+  }
 
-    <hr />
-  </header>
-);
+  return (
+    <header>
+      <Navbar>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <Link to="/">Wedodo</Link>
+          </Navbar.Brand>
+        </Navbar.Header>
+        {menu(loggedIn)}
+      </Navbar>
+      <hr />
+    </header>
+  );
+}
 
 export default Header;
 

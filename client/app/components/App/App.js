@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 
+import StatefulHeader from '../../containers/StatefulHeader'
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 const App = ({ children }) => (
   <>
-    <Header />
+    <StatefulHeader />
 
     <div className="jumbotron">
       <div className="container">
